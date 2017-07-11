@@ -17,7 +17,7 @@ class Pokeapi extends Component {
     handleSubmit = (ev) => {
         ev.preventDefault()
         this.setState({pokeName: ''})
-        this.props.history.push(`/pokeapi.co/api/v2/pokemon/${this.state.pokeName}`)
+        this.props.history.push(`/pokeapi/${this.state.pokeName}`)
     }
 
     render (){
@@ -37,8 +37,8 @@ class Pokeapi extends Component {
                     </div>
                 </form>
 
-                <Route exact path="/pokeapi.co" render={ ()=> <h3>Please enter a Pokemon</h3> }/>
-                <Route path="/pokeapi.co/:pokeName" component={Pokeapi}/>
+                <Route exact path="/pokeapi" render={ ()=> <h3>Please enter a Pokemon</h3> }/>
+                <Route path="/pokeapi/:pokeName" component={Pokemon}/>
             </div>
         )
     }

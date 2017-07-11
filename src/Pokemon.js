@@ -10,11 +10,11 @@ class Pokemon extends Component {
       pokemon: {}
     }
 
-    this.fetchPokeData(props)  
+    this.fetchPokemonData(props)  
   }
 
   fetchPokemonData(props) {
-    fetch(`http://pokeapi.co/api/v2/pokemon/${props.match.params.forms.name}`)
+    fetch(`http://pokeapi.co/api/v2/pokemon/${props.match.params.pokeName}`)
       .then(data => data.json())
       .then(pokemon => this.setState({ pokemon }))
   }
@@ -28,14 +28,16 @@ class Pokemon extends Component {
 
   render() {
     const { pokemon } = this.state
+    const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`
     return (
       <div className="pokemon">
-        <img src={pokemon.forms.url} alt="pokemon avatar" />
+        <img src={url} alt="pokemon avatar"/>
         <h2>{pokemon.name}</h2>
         <h3>Base XP: {pokemon.base_experience}</h3>
         <h3>height: {pokemon.height}</h3>
         <h3>weight: {pokemon.weight}</h3>
-        <a href={pokemon.forms.url} target="_">Link to {pokemon.name}'s profile</a>
+
+        <a target="_">Link to {pokemon.pokeName}'s profile</a>
       </div>
     )
   }
